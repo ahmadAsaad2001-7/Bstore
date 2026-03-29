@@ -1,0 +1,20 @@
+﻿using StoreWebapi.Domain.Domain.Enums;
+
+namespace StoreWebapi.Domain.Domain;
+public class Book
+{
+    public Guid id { get; set; }
+    public string name { get; set; }
+    public string description { get; set; }
+    public string author  { get; set; }
+    public decimal price { get; set; }
+    public string isbn { get; set; }
+    public string imageUrl  { get; set; }
+    public List<Genres>  genres { get; set; }
+    public int Version { get; set; }
+    public double rating { get; set; }
+    public ICollection<comment>  Comments { get; set; }
+    public ICollection<transaction>  Transactions { get; set; }
+    
+    
+}
