@@ -1,0 +1,14 @@
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\bin\Debug\net10.0\StoreWebapi.Application.deps.json
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\bin\Debug\net10.0\StoreWebapi.Application.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\bin\Debug\net10.0\StoreWebapi.Application.pdb
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.AssemblyInfoInputs.cache
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.AssemblyInfo.cs
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.csproj.CoreCompileInputs.cache
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\refint\StoreWebapi.Application.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.pdb
+E:\vsCodeLearn\BookStore\StoreWebapi.Application\obj\Debug\net10.0\ref\StoreWebapi.Application.dll
+E:\vsCodeLearn\bookstore\StoreWebapi.Application\bin\Debug\net10.0\StoreWebapi.Application.runtimeconfig.json
+E:\vsCodeLearn\bookstore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.csproj.AssemblyReference.cache
+E:\vsCodeLearn\bookstore\StoreWebapi.Application\obj\Debug\net10.0\StoreWebapi.Application.genruntimeconfig.cache
