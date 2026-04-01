@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreWebapi.Domain.Domain;
 using StoreWebapi.Domain.Domain.Enums;
 
+namespace StoreWebapi.Infrastructure.Data.Configurations;
+
 
 public class BookConfiguration : IEntityTypeConfiguration<Book>
 {

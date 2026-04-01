@@ -9,7 +9,7 @@ using StoreWebapi.Infrastructure.Data;
 
 #nullable disable
 
-namespace StoreWebapi.InfraStructure.Migrations
+namespace StoreWebapi.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260329182724_InitialCreate")]

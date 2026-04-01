@@ -161,3 +161,10 @@ E:\vsCodeLearn\bookstore\storewebapi.webapi\bin\Debug\net10.0\ru\Microsoft.CodeA
 E:\vsCodeLearn\bookstore\storewebapi.webapi\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 E:\vsCodeLearn\bookstore\storewebapi.webapi\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 E:\vsCodeLearn\bookstore\storewebapi.webapi\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\MediatR.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\MediatR.Contracts.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\obj\Debug\net10.0\StoreWebapi.WebApi.sourcelink.json
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\FluentValidation.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\StoreWebapi.Application.dll
+E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\StoreWebapi.Application.pdb

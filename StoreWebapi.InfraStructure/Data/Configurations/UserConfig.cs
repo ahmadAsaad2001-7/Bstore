@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StoreWebapi.Domain.Domain;
 
+namespace StoreWebapi.Infrastructure.Data.Configurations;
+
 public class userConfiguration : IEntityTypeConfiguration<user>
 {
     public void Configure(EntityTypeBuilder<user> builder)

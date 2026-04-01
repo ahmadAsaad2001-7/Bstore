@@ -10,3 +10,4 @@ E:\vsCodeLearn\BookStore\StoreWebapi.Domain\obj\Debug\net10.0\refint\StoreWebapi
 E:\vsCodeLearn\BookStore\StoreWebapi.Domain\obj\Debug\net10.0\StoreWebapi.Domain.pdb
 E:\vsCodeLearn\BookStore\StoreWebapi.Domain\obj\Debug\net10.0\ref\StoreWebapi.Domain.dll
 E:\vsCodeLearn\BookStore\StoreWebapi.Domain\obj\Debug\net10.0\StoreWebapi.Domain.csproj.AssemblyReference.cache
+E:\vsCodeLearn\BookStore\StoreWebapi.Domain\obj\Debug\net10.0\StoreWebapi.Domain.sourcelink.json
