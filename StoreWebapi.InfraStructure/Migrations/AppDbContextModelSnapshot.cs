@@ -8,7 +8,7 @@ using StoreWebapi.Infrastructure.Data;
 
 #nullable disable
 
-namespace StoreWebapi.InfraStructure.Migrations
+namespace StoreWebapi.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -199,6 +199,34 @@ namespace StoreWebapi.InfraStructure.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            id = new Guid("b1111111-1111-1111-1111-111111111111"),
+                            Version = 1,
+                            author = "Robert C. Martin",
+                            description = "A Code of Conduct for Professional Programmers.",
+                            genres = "[19,44]",
+                            imageUrl = "https://example.com/cleancoder.jpg",
+                            isbn = "978-0137081073",
+                            name = "The Clean Coder",
+                            price = 35.99m,
+                            rating = 4.7999999999999998
+                        },
+                        new
+                        {
+                            id = new Guid("b2222222-2222-2222-2222-222222222222"),
+                            Version = 1,
+                            author = "J.R.R. Tolkien",
+                            description = "The first volume of J.R.R. Tolkien's epic adventure.",
+                            genres = "[23,43]",
+                            imageUrl = "https://example.com/lotr.jpg",
+                            isbn = "978-0547928210",
+                            name = "The Fellowship of the Ring",
+                            price = 19.99m,
+                            rating = 4.9000000000000004
+                        });
                 });
 
             modelBuilder.Entity("StoreWebapi.Domain.Domain.comment", b =>

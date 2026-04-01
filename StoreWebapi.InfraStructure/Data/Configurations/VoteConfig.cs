@@ -2,7 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StoreWebapi.Domain.Domain;
-    public class VoteConfiguration : IEntityTypeConfiguration<vote>
+
+namespace StoreWebapi.Infrastructure.Data.Configurations;
+
+public class VoteConfiguration : IEntityTypeConfiguration<vote>
 {
     public void Configure(EntityTypeBuilder<vote> builder)
     {

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StoreWebapi.Domain.Domain;
 
-namespace InfraStructure.Data.Configurations;
+namespace StoreWebapi.Infrastructure.Data.Configurations;
 
 public class CommentConfiguration : IEntityTypeConfiguration<comment>
 {

@@ -1,8 +1,9 @@
-using InfraStructure.Data.Configurations;
+using StoreWebapi.Infrastructure.Data.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StoreWebapi.Domain.Domain;
+using StoreWebapi.Domain.Domain.Enums;
 
 namespace StoreWebapi.Infrastructure.Data;
 
@@ -35,5 +36,37 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
         modelBuilder.ApplyConfiguration(new CouponsConfiguration());
         modelBuilder.ApplyConfiguration(new CouponUserConfiguration());
         modelBuilder.ApplyConfiguration(new GridCellConfiguration());
+        
+        // Seed Data
+        modelBuilder.Entity<Book>().HasData(
+            new Book
+            {
+                id = Guid.Parse("b1111111-1111-1111-1111-111111111111"),
+                name = "The Clean Coder",
+                description = "A Code of Conduct for Professional Programmers.",
+                author = "Robert C. Martin",
+                price = 35.99m,
+                isbn = "978-0137081073",
+                imageUrl = "https://example.com/cleancoder.jpg",
+                rating = 4.8,
+                Version = 1,
+                genres = new List<Genres> { Genres.HardSciFi, Genres.Essay } 
+                
+            },
+            new Book
+            {
+                id = Guid.Parse("b2222222-2222-2222-2222-222222222222"),
+                name = "The Fellowship of the Ring",
+                description = "The first volume of J.R.R. Tolkien's epic adventure.",
+                author = "J.R.R. Tolkien",
+                price = 19.99m,
+                isbn = "978-0547928210",
+                imageUrl = "https://example.com/lotr.jpg",
+                rating = 4.9,
+                Version = 1 
+                ,
+                genres = new List<Genres> { Genres.Fantasy, Genres.Cookbook }
+            }
+        );
     }
 }
