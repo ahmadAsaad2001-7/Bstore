@@ -48,6 +48,29 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("200bcfa4-5a90-40f0-be14-193adfac0e01"),
+                            ConcurrencyStamp = "29f4a721-6e9e-4c9a-96d9-3b5d17f1efb9",
+                            Name = "USER",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = new Guid("ad4e1cec-240e-4fbf-82e8-018c3d0b2935"),
+                            ConcurrencyStamp = "45d8c1ea-d70e-4ae9-8ac0-c77e09a9b420",
+                            Name = "ADMINISTRATOR",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = new Guid("09625b39-fde1-4b39-8983-bc7ce743d83c"),
+                            ConcurrencyStamp = "1d76be73-238b-4e67-8197-198d7a99a56f",
+                            Name = "VENDOR",
+                            NormalizedName = "VENDOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -161,7 +184,6 @@ namespace StoreWebapi.Infrastructure.Migrations
 
                     b.Property<int>("Version")
                         .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int");
 
                     b.Property<string>("author")

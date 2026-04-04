@@ -23,10 +23,9 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             .WithOne(t => t.book)
             .HasForeignKey(t => t.bookId);
 
-        builder.HasMany(b => b.Comments)
-       .WithOne(c => c.book)
-       .HasForeignKey(c => c.bookId);
-       builder.Property(b => b.Version).IsRowVersion();
+            builder.Property(b => b.Version)
+                .IsRequired()
+                .IsConcurrencyToken();
 
        var converter = new ValueConverter<List<Genres>, string>(
            v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),

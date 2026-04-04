@@ -12,8 +12,7 @@ public class GetBookByIdHandler(IRepository repository)
 {
     public async Task<Result<GetBookByIdResponse>> Handle(GetBookByIdQuery request, CancellationToken ct)
     {
-        try
-        {
+       
             var book = await repository.FindById<Book>(request.Id);
 
             if (book is null)
@@ -37,12 +36,9 @@ public class GetBookByIdHandler(IRepository repository)
 
 
             return Result.Success(response);
-        }
-        catch
-        {
-            ILogger logger = new LoggerFactory().CreateLogger<GetBookByIdHandler>();
-            logger.LogError("Error getting book by ID: " + request.Id);
-            return Result.Failure<GetBookByIdResponse>("Internal error");
-        }
+      
+     
+        
+        
     }
 }
