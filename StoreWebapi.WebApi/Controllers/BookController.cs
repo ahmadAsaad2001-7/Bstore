@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using StoreWebapi.Application.Features.Books.Commands.Create;
 using StoreWebapi.Application.Features.Books.Queries;
+using StoreWebapi.Application.Features.Books.Queries.GetBooks;
 using StoreWebapi.Application.Features.Books.SearchBooks;
 
 namespace StoreWebapi.Api.Controllers;
@@ -17,10 +19,18 @@ public class BooksController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var query = new GetBooksQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess?Ok(result.Value):NotFound(result.Error);
+
+    }
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetBook([FromRoute] Guid id)
     {
-        // Log the received id
+    
         Console.WriteLine($"Received id: {id}");
         Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
 
@@ -54,5 +64,18 @@ public class BooksController : ControllerBase
         {
             return StatusCode(500, $"Internal error: {ex.Message}");
         }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddBook([FromBody] CreateCommand command)
+    {
+        var result = await _mediator.Send(command);
+
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Error); 
+        }
+
+        return Ok(result.Value); 
     }
 }

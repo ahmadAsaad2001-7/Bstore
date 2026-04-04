@@ -67,6 +67,11 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
                 ,
                 genres = new List<Genres> { Genres.Fantasy, Genres.Cookbook }
             }
+        ); 
+        modelBuilder.Entity<IdentityRole<Guid>>().HasData(
+            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "USER", NormalizedName = "USER" },
+            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "ADMINISTRATOR", NormalizedName = "ADMINISTRATOR" },
+            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "VENDOR", NormalizedName = "VENDOR" }
         );
     }
 }
