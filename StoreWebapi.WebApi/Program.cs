@@ -1,4 +1,5 @@
 
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using StoreWebapi.Application;
@@ -18,6 +19,17 @@
         })
         .AddEntityFrameworkStores<AppDbContext>()
         .AddDefaultTokenProviders();
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+        {
+            options.Cookie.Name = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.ExpireTimeSpan = TimeSpan.FromDays(7);
+            options.SlidingExpiration = true;
+            options.Cookie.HttpOnly = true;
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/api/auth/logout";
+            options.AccessDeniedPath = "/api/auth/access-denied";
+        }
+        );
     builder.Services.AddOpenApi();
     builder.Services.AddControllers(); 
     

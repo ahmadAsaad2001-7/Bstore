@@ -14,4 +14,4 @@ public class CreateValidator :AbstractValidator<CreateCommand>
         RuleFor(x=>x.price).NotEmpty().WithMessage("Price is required");
         RuleFor(x=>x.name).NotEmpty().WithMessage("Name is required");
     }
-}
+} 

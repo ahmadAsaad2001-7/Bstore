@@ -1,4 +1,6 @@
-﻿namespace StoreWebapi.Application.Common;
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace StoreWebapi.Application.Common;
 
 public class Result
 {
@@ -11,8 +13,7 @@ public class Result
         if (isSuccess && error != null)
             throw new InvalidOperationException("Success result cannot have an error.");
         if (!isSuccess && error == null)
-            throw new InvalidOperationException("Failure result must have an error.");
-
+            throw new InvalidOperationException("Failure result must have an error."); 
         IsSuccess = isSuccess;
         Error = error;
     }
