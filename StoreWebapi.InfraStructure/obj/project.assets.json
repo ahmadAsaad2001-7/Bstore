@@ -1510,7 +1510,10 @@
         },
         "runtime": {
           "bin/placeholder/StoreWebapi.Application.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "StoreWebapi.Domain/1.0.0": {
         "type": "project",
