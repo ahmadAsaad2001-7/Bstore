@@ -26,7 +26,7 @@ public class CreateHandler(IRepository repo) : IRequestHandler<CreateCommand, Re
 
         repo.Add(Book);
         
-        // FIX: You MUST await the save, otherwise the DB might not write the data
+  
         await repo.SaveChangesAsync(cancellationToken); 
         
         return Result<Guid>.Success(Book.id);
