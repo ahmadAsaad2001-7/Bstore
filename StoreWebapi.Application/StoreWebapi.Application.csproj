@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Books\Commands\Delete\" />
-    <Folder Include="Features\Books\Commands\Update\" />
     <Folder Include="Features\Books\Queries\GetBooksByUser\" />
     <Folder Include="Features\User\log\LogOut\" />
     <ProjectReference Include="..\StoreWebapi.Domain\StoreWebapi.Domain.csproj" />
