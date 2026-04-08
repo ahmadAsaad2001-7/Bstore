@@ -21,6 +21,7 @@ public class StripePaymentService : IPaymentService
     {
         try
         {
+            var frontendUrl = "http://localhost:5173";
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string> { "card" },
@@ -40,8 +41,8 @@ public class StripePaymentService : IPaymentService
                 }).ToList(),
                 Mode = "payment",
                 
-                SuccessUrl = "that's my url here i need to add" + order.Id,
-                CancelUrl = "here my cancellation url",
+                SuccessUrl = $"{frontendUrl}/order-success?id={order.Id}" ,
+                CancelUrl = $"{frontendUrl}", 
                 ClientReferenceId = order.Id.ToString()
             };
 
