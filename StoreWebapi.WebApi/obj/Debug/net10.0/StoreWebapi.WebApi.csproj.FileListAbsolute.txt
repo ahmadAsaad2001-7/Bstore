@@ -168,3 +168,4 @@ E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\FluentValidation.d
 E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
 E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\StoreWebapi.Application.dll
 E:\vsCodeLearn\BookStore\StoreWebapi.WebApi\bin\Debug\net10.0\StoreWebapi.Application.pdb
+E:\vsCodeLearn\bookstore\StoreWebapi.WebApi\bin\Debug\net10.0\Stripe.net.dll

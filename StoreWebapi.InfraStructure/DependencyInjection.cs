@@ -5,6 +5,7 @@ using StoreWebapi.Domain.Interfaces;
 using StoreWebapi.Infrastructure.Data;
 using StoreWebapi.Infrastructure.Shared;
 
+
 namespace StoreWebapi.Infrastructure;
 
 public static class DependencyInjection
@@ -13,8 +14,10 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-    
+        services.AddScoped<IPaymentService, StripePaymentService>();
         services.AddScoped<IRepository, Repository>();
         return services;
+        
+
     }
 }

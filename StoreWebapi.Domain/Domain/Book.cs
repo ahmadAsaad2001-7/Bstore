@@ -10,9 +10,12 @@ public class Book
     public decimal price { get; set; }
     public string isbn { get; set; }
     public string imageUrl  { get; set; }
+    public Guid? UserId { get; set; }
+    public user user { get; set; }
     public List<Genres>  genres { get; set; }
     public int Version { get; set; }
     public double rating { get; set; }
+    public DateTime CreatedAt { get; set; }
     public ICollection<comment>  Comments { get; set; }
     public ICollection<transaction>  Transactions { get; set; }
     

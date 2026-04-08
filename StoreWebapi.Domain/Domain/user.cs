@@ -10,7 +10,8 @@ public class user : IdentityUser<Guid>
     public string? cellId { get; set; }
     public gridCell gridCell { get; set; }
     public ICollection<transaction> Transactions { get; set; }
-
+    public ICollection<Book> BooksRelated { get; set; }
+public ICollection<Order> Orders { get; set; }
     public ICollection<transaction> VendorTransactions { get; set; }
 
     public ICollection<comment> Comments { get; set; }

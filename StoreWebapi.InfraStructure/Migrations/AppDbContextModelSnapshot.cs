@@ -52,22 +52,22 @@ namespace StoreWebapi.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("200bcfa4-5a90-40f0-be14-193adfac0e01"),
-                            ConcurrencyStamp = "29f4a721-6e9e-4c9a-96d9-3b5d17f1efb9",
+                            Id = new Guid("471208fa-a7f2-4d31-9ec9-30fa2f4b8631"),
+                            ConcurrencyStamp = "9f6dc0d8-d738-4ca2-8f78-1f8cadb313d8",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("ad4e1cec-240e-4fbf-82e8-018c3d0b2935"),
-                            ConcurrencyStamp = "45d8c1ea-d70e-4ae9-8ac0-c77e09a9b420",
+                            Id = new Guid("4f3e66f2-780c-46dc-b5a1-c628271a9bbe"),
+                            ConcurrencyStamp = "867a4a74-e262-46eb-9d25-732eff7fe3bc",
                             Name = "ADMINISTRATOR",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = new Guid("09625b39-fde1-4b39-8983-bc7ce743d83c"),
-                            ConcurrencyStamp = "1d76be73-238b-4e67-8197-198d7a99a56f",
+                            Id = new Guid("1f5788d5-62d1-4698-b0dc-8381addac372"),
+                            ConcurrencyStamp = "cf6a8db0-ac3a-472e-ad89-3c1213dd42ea",
                             Name = "VENDOR",
                             NormalizedName = "VENDOR"
                         });
@@ -182,6 +182,12 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Version")
                         .IsConcurrencyToken()
                         .HasColumnType("int");
@@ -220,12 +226,15 @@ namespace StoreWebapi.Infrastructure.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Books");
 
                     b.HasData(
                         new
                         {
                             id = new Guid("b1111111-1111-1111-1111-111111111111"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Version = 1,
                             author = "Robert C. Martin",
                             description = "A Code of Conduct for Professional Programmers.",
@@ -239,6 +248,7 @@ namespace StoreWebapi.Infrastructure.Migrations
                         new
                         {
                             id = new Guid("b2222222-2222-2222-2222-222222222222"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Version = 1,
                             author = "J.R.R. Tolkien",
                             description = "The first volume of J.R.R. Tolkien's epic adventure.",
@@ -249,6 +259,40 @@ namespace StoreWebapi.Infrastructure.Migrations
                             price = 19.99m,
                             rating = 4.9000000000000004
                         });
+                });
+
+            modelBuilder.Entity("StoreWebapi.Domain.Domain.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BuyerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StripeSessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuyerId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("StoreWebapi.Domain.Domain.comment", b =>
@@ -359,6 +403,15 @@ namespace StoreWebapi.Infrastructure.Migrations
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
@@ -385,6 +438,8 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("bookId");
 
@@ -589,6 +644,27 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StoreWebapi.Domain.Domain.Book", b =>
+                {
+                    b.HasOne("StoreWebapi.Domain.Domain.user", "user")
+                        .WithMany("BooksRelated")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("StoreWebapi.Domain.Domain.Order", b =>
+                {
+                    b.HasOne("StoreWebapi.Domain.Domain.user", "Buyer")
+                        .WithMany("Orders")
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+                });
+
             modelBuilder.Entity("StoreWebapi.Domain.Domain.comment", b =>
                 {
                     b.HasOne("StoreWebapi.Domain.Domain.user", "user")
@@ -629,6 +705,12 @@ namespace StoreWebapi.Infrastructure.Migrations
 
             modelBuilder.Entity("StoreWebapi.Domain.Domain.transaction", b =>
                 {
+                    b.HasOne("StoreWebapi.Domain.Domain.Order", "Order")
+                        .WithMany("Transactions")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("StoreWebapi.Domain.Domain.Book", "book")
                         .WithMany("Transactions")
                         .HasForeignKey("bookId")
@@ -646,6 +728,8 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .HasForeignKey("vendorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("book");
 
@@ -703,6 +787,11 @@ namespace StoreWebapi.Infrastructure.Migrations
                     b.Navigation("Transactions");
                 });
 
+            modelBuilder.Entity("StoreWebapi.Domain.Domain.Order", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
             modelBuilder.Entity("StoreWebapi.Domain.Domain.coupons", b =>
                 {
                     b.Navigation("couponUsers");
@@ -715,9 +804,13 @@ namespace StoreWebapi.Infrastructure.Migrations
 
             modelBuilder.Entity("StoreWebapi.Domain.Domain.user", b =>
                 {
+                    b.Navigation("BooksRelated");
+
                     b.Navigation("Comments");
 
                     b.Navigation("CouponUsers");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("ParticipatingVotes");
 

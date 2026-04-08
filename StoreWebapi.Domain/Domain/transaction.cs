@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata;
+using StoreWebapi.Domain.Domain.Enums;
 
 namespace StoreWebapi.Domain.Domain;
 public class transaction
@@ -10,6 +11,11 @@ public class transaction
     public user vendor {get;set;}
     public Book book { get; set; }
     public Guid bookId { get; set; }
+    public Guid OrderId { get; set; }
+    public Order Order { get; set; }
+    public PaymentStatus Status { get; set; } = PaymentStatus.Pending;
+    
+    public decimal PaidAmount { get; set; }
     public DateTime DeliveryDate { get; set; }
     public DateTime TransactionDate { get; set; } =  DateTime.Now;
     public string destination { get; set; }
