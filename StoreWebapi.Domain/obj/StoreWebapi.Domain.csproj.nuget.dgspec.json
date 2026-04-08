@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj": {}
+    "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj": {}
   },
   "projects": {
-    "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj": {
+    "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj",
+        "projectUniqueName": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj",
         "projectName": "StoreWebapi.Domain",
-        "projectPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj",
+        "projectPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Domain\\StoreWebapi.Domain.csproj",
         "packagesPath": "C:\\Users\\tahaa\\.nuget\\packages\\",
-        "outputPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Domain\\obj\\",
+        "outputPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tahaa\\AppData\\Roaming\\NuGet\\NuGet.Config"
