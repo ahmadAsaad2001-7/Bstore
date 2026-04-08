@@ -18,7 +18,7 @@ public class CreateOrderHandler(
 {
     public async Task<Result<CreateOrderResponse>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        // 1. Authenticate Buyer
+        //  Authenticate Buyer
         var userIdClaim = httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier);
         if (userIdClaim == null) return Result.Failure<CreateOrderResponse>("User is not authenticated.");
         var buyerId = Guid.Parse(userIdClaim.Value);
@@ -32,7 +32,7 @@ public class CreateOrderHandler(
 
         if (!books.Any()) return Result.Failure<CreateOrderResponse>("No valid books found.");
 
-        // 3. Process Coupon (if provided)
+        //  Process Coupon (if provided)
         decimal discountMultiplier = 1.0m; 
         
         coupons? appliedCoupon = null;
@@ -75,14 +75,14 @@ public class CreateOrderHandler(
             var newTransaction = new transaction
             {
                 id = Guid.NewGuid(),
-                OrderId = orderId,        // Link to parent order
+                OrderId = orderId,        
                 userId = buyerId,
                 vendorId = book.UserId.Value,
                 bookId = book.id,
-                amount = discountedPrice, // Store the EXACT price they are paying right now
+                amount = discountedPrice,
                 currency = "usd",
                 TransactionDate = DateTime.UtcNow,
-                destination = "Digital",  // Or request.Address
+                destination = "Digital",  
                 Status = PaymentStatus.Pending
             };
 
@@ -91,10 +91,10 @@ public class CreateOrderHandler(
         
         order.TotalAmount = totalOrderAmount;
 
-        // 6. Handle the "100% Free" Edge Case
+        //  Handle the "100% Free" Edge Case
         if (totalOrderAmount <= 0)
         {
-            order.Status = "Paid"; // Skip Stripe, it's free!
+            order.Status = "Paid";
             foreach (var t in order.Transactions) t.Status = PaymentStatus.Paid;
 
             repo.Add(order);
@@ -103,20 +103,30 @@ public class CreateOrderHandler(
             return Result.Success(new CreateOrderResponse(orderId, "Free", true));
         }
 
-        // 7. Call Stripe for Payment
-        // Stripe expects the order to generate the checkout session
+        //  Call Stripe for Payment
+       
         var stripeResult = await paymentService.CreateCheckoutSessionAsync(order, order.Transactions.ToList());
         if (stripeResult.IsFailure)
             return Result.Failure<CreateOrderResponse>("Payment gateway error: " + stripeResult.Error);
-
+        
+        if (appliedCoupon != null)
+        {
+            var usedCoupon = new couponUser
+            {
+                couponId = appliedCoupon.couponId,
+                userId = buyerId,
+                UsedAt = DateTime.UtcNow
+            };
+            repo.Add(usedCoupon); 
+        }
         // Save Stripe Session ID so the Webhook can find this order later
         order.StripeSessionId = stripeResult.Value.SessionId; 
 
-        // 8. Save to Database
+        //  Save to Database
         repo.Add(order);
         await repo.SaveChangesAsync(cancellationToken);
 
-        // 9. Return the URL to the Controller
+        //  Return the URL to the Controller
         return Result.Success(new CreateOrderResponse(orderId, stripeResult.Value.CheckoutUrl, false));
     }
 }

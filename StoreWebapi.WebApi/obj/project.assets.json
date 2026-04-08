@@ -3431,11 +3431,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.WebApi\\StoreWebapi.WebApi.csproj",
+      "projectUniqueName": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.WebApi\\StoreWebapi.WebApi.csproj",
       "projectName": "StoreWebapi.WebApi",
-      "projectPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.WebApi\\StoreWebapi.WebApi.csproj",
+      "projectPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.WebApi\\StoreWebapi.WebApi.csproj",
       "packagesPath": "C:\\Users\\tahaa\\.nuget\\packages\\",
-      "outputPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.WebApi\\obj\\",
+      "outputPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tahaa\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3450,11 +3450,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Application\\StoreWebapi.Application.csproj": {
-              "projectPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Application\\StoreWebapi.Application.csproj"
+            "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Application\\StoreWebapi.Application.csproj": {
+              "projectPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Application\\StoreWebapi.Application.csproj"
             },
-            "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Infrastructure\\StoreWebapi.Infrastructure.csproj": {
-              "projectPath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Infrastructure\\StoreWebapi.Infrastructure.csproj"
+            "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Infrastructure\\StoreWebapi.Infrastructure.csproj": {
+              "projectPath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Infrastructure\\StoreWebapi.Infrastructure.csproj"
             }
           }
         }

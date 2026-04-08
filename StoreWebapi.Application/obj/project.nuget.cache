@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4iIEPL8SdGU=",
+  "dgSpecHash": "oh8PsybQprY=",
   "success": true,
-  "projectFilePath": "E:\\vsCodeLearn\\BookStore\\StoreWebapi.Application\\StoreWebapi.Application.csproj",
+  "projectFilePath": "E:\\vsCodeLearn\\bookstore\\StoreWebapi.Application\\StoreWebapi.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tahaa\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\tahaa\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
