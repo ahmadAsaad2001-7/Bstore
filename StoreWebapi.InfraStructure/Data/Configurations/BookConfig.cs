@@ -22,7 +22,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             builder.HasMany(b => b.Transactions)
             .WithOne(t => t.book)
             .HasForeignKey(t => t.bookId);
-
+        builder.HasOne(b=>b.user).WithMany(u=>u.BooksRelated).HasForeignKey(b=>b.UserId).OnDelete(DeleteBehavior.Restrict);
             builder.Property(b => b.Version)
                 .IsRequired()
                 .IsConcurrencyToken();

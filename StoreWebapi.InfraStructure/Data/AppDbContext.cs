@@ -22,6 +22,7 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
     public DbSet<gridCell> GridCells { get; set; }
     public DbSet<vote> Votes { get; set; }
     public DbSet<voteParticipant> VoteParticipants { get; set; }
+    public DbSet<Order> Orders { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

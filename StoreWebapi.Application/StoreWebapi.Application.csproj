@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Stripe.net" Version="51.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +23,9 @@
 
   <ItemGroup>
     <Folder Include="Features\Books\Queries\GetBooksByUser\" />
+    <Folder Include="Features\Transactions\" />
     <Folder Include="Features\User\log\LogOut\" />
     <ProjectReference Include="..\StoreWebapi.Domain\StoreWebapi.Domain.csproj" />
-    <Folder Include="Common\Interfaces\" />
   </ItemGroup>
 
 </Project>

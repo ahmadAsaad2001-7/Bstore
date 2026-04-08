@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace StoreWebapi.Application.Common;
+namespace StoreWebapi.Domain.Common;
 
 public class Result
 {
