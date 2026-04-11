@@ -1,6 +1,5 @@
-﻿namespace StoreWebapi.Application.Features.Admin.CastVote;
+﻿using MediatR;
 
-public class CastVoteCommand
-{
-    
-}
+namespace StoreWebapi.Application.Features.Admin.CastVote;
+
+public record CastVoteCommand() : IRequest<Result<CastVoteResponse>>;
