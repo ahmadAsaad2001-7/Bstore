@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using StoreWebapi.Application.Features.User;
+using StoreWebapi.Application.Features.User.ApplyforVendorRole;
 
 namespace StoreWebapi.Api.Controllers;
 [ApiController]
@@ -30,6 +32,25 @@ public class UserController : ControllerBase
         if (result.IsSuccess)
             return Ok(new { userId = result.Value });
         return Unauthorized(new { error = result.Error });
+    }
+    [Authorize(Roles = "User")] 
+    [HttpPost("apply-for-vendor")]
+    public async Task<IActionResult> ApplyForVendor()
+    {
+     
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        if (userIdClaim == null) return Unauthorized("User ID not found in claims.");
+
+        var userId = Guid.Parse(userIdClaim.Value);
+
+       
+        var command = new ApplyForVendorCommand(userId);
+    
+        var result = await _mediator.Send(command);
+
+        return result.IsSuccess 
+            ? Ok(new { VoteId = result.Value, Message = "Application submitted to admins." }) 
+            : BadRequest(result.Error);
     }
     
 }
