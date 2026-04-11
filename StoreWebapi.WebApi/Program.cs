@@ -1,13 +1,13 @@
 
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
+  
     using StoreWebapi.Application;
     using StoreWebapi.Domain.Domain;
-    using StoreWebapi.Domain.Interfaces;
+    
     using StoreWebapi.Infrastructure;
     using StoreWebapi.Infrastructure.Data;
-    using StoreWebapi.Infrastructure.Shared;
+   
 
     var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +31,11 @@
         }
         );
     builder.Services.AddOpenApi();
-    builder.Services.AddControllers(); 
+    builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        
+        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    }); 
     
     builder.Services.AddApplication();
     builder.Services.AddInfraStructure( builder.Configuration);
@@ -48,7 +52,8 @@
     }
 
     app.UseHttpsRedirection();
-
+    app.UseAuthentication(); 
+    app.UseAuthorization();
 
     app.MapControllers(); 
 

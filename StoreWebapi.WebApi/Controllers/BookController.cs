@@ -1,6 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreWebapi.Application.Features.Books.Commands.Create;
+using StoreWebapi.Application.Features.Books.Commands.Delete;
+using StoreWebapi.Application.Features.Books.Commands.Update;
 using StoreWebapi.Application.Features.Books.Queries;
 using StoreWebapi.Application.Features.Books.Queries.GetBooks;
 using StoreWebapi.Application.Features.Books.SearchBooks;
@@ -11,7 +14,7 @@ namespace StoreWebapi.Api.Controllers;
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
 {
-    private readonly ISender _mediator; 
+    private readonly ISender _mediator;
 
 
     public BooksController(ISender mediator)
@@ -24,13 +27,14 @@ public class BooksController : ControllerBase
     {
         var query = new GetBooksQuery();
         var result = await _mediator.Send(query);
-        return result.IsSuccess?Ok(result.Value):NotFound(result.Error);
+        return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
 
     }
+
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetBook([FromRoute] Guid id)
     {
-    
+
         Console.WriteLine($"Received id: {id}");
         Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
 
@@ -42,7 +46,7 @@ public class BooksController : ControllerBase
             return BadRequest(new { errors });
         }
 
-      
+
         var query = new GetBookByIdQuery(id);
         Console.WriteLine($"Controller created query with Id: {query.Id}");
 
@@ -60,12 +64,13 @@ public class BooksController : ControllerBase
             }
 
             return Ok(result.Value);
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             return StatusCode(500, $"Internal error: {ex.Message}");
         }
     }
-
+    [Authorize(Roles =" Administrator") ]
     [HttpPost]
     public async Task<IActionResult> AddBook([FromBody] CreateCommand command)
     {
@@ -73,9 +78,41 @@ public class BooksController : ControllerBase
 
         if (result.IsFailure)
         {
-            return BadRequest(result.Error); 
+            return BadRequest(result.Error);
         }
 
+        return Ok(result.Value);
+    }
+  
+    [HttpDelete]
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteBook([FromQuery] Guid id)
+    {
+        var Cmd = new DeleteBookCommand(id);
+        var result = await _mediator.Send(Cmd);
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Error);
+
+        }
+
+        return Ok(result.Value);
+    }
+   
+
+    [HttpPut("{id:guid}")] 
+    public async Task<IActionResult> UpdateBook([FromRoute] Guid id, [FromBody] UpdateBookCommand command)
+    {
+       
+        command.Id = id;
+        var result =await _mediator.Send(command);
+        if (result.IsFailure)
+        {
+            return result.Error!.Contains("not found")
+                ? NotFound(new { error = result.Error })
+                : BadRequest(new { error = result.Error });
+        }
         return Ok(result.Value); 
     }
+
 }

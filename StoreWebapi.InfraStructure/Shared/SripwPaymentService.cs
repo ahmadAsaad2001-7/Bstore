@@ -29,7 +29,7 @@ public class StripePaymentService : IPaymentService
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        // Stripe uses cents ($20.00 = 2000)
+                        
                         UnitAmount = (long)(t.amount * 100), 
                         Currency = "usd",
                         ProductData = new SessionLineItemPriceDataProductDataOptions 
