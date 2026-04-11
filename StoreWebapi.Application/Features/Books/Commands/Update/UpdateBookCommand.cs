@@ -13,6 +13,7 @@ public record UpdateBookCommand :IRequest<Result<UpdateBookResponse>>
     public decimal price { get; set; }
     public string isbn { get; set; } = string.Empty;
     public string imageUrl { get; set; } = string.Empty;
+   public int version { get; set; } 
     public List<Genres> genres { get; set; } = new();
     
 }

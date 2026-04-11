@@ -8,7 +8,7 @@ public interface IRepository
     public Task<T> FindById<T>(Guid id) where T : class;
     public Task<List<T>> FindAll<T>() where T : class;
     public Task<List<T>> FindAll<T>(Expression<Func<T, bool>>predicate) where T : class;
-
+    public Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
     #region commands
 
     void Add<T>(T item) where T : class;

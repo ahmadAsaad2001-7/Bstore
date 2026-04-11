@@ -29,6 +29,13 @@ public class Repository :IRepository
     {
         return await  _context.Set<T>().Where(predicate).ToListAsync();
     }
+
+    public async Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+    {
+       var x = await  _context.Set<T>().Where(predicate).AnyAsync();
+       return x;
+    }
+
     #endregion
     
     
