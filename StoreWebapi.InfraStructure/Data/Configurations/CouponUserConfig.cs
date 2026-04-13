@@ -4,7 +4,7 @@ using StoreWebapi.Domain.Domain;
 namespace StoreWebapi.Infrastructure.Data.Configurations;
 
 public class CouponUserConfiguration : IEntityTypeConfiguration<couponUser>
-{
+{   
     public void Configure(EntityTypeBuilder<couponUser> builder)
     {
         builder.HasKey(cu => new { cu.couponId, cu.userId }); // Composite Key

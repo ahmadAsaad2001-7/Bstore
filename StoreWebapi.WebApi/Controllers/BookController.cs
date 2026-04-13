@@ -29,7 +29,7 @@ public class BooksController : ControllerBase
         var result = await _mediator.Send(query);
         return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
 
-    }
+    }   
     [Authorize(Roles ="ADMINISTRATOR") ]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetBook([FromRoute] Guid id)

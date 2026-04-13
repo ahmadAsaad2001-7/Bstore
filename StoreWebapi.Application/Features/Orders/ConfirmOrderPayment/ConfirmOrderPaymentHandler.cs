@@ -9,7 +9,7 @@ public class ConfirmOrderPaymentHandler(IRepository repo) : IRequestHandler<Conf
     {
         public async Task<Result> Handle(ConfirmOrderPaymentCommand request, CancellationToken ct)
         {
-            // fetch order
+            
             var order = await repo.FindById<Order>(request.OrderId);
         
             if (order == null) 
@@ -17,8 +17,20 @@ public class ConfirmOrderPaymentHandler(IRepository repo) : IRequestHandler<Conf
 
             if (order.Status == "Paid") 
                 return Result.Success(); 
+            var transactions = await repo.FindAll<transaction>(t => t.OrderId == request.OrderId);
 
-            // 2. Update Statuses
+            foreach (var transaction in transactions)
+            {
+                transaction.Status = PaymentStatus.Paid;
+                var libraryEntry = new UserBook
+                {
+                    UserId = order.BuyerId,
+                    BookId = transaction.bookId,
+                    PurchaseDate = DateTime.UtcNow
+                };
+                repo.Add(libraryEntry);
+            }
+            
             order.Status = "Paid";
         
             

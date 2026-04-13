@@ -23,13 +23,10 @@ public class CreateOrderHandler(
         if (userIdClaim == null) return Result.Failure<CreateOrderResponse>("User is not authenticated.");
         var buyerId = Guid.Parse(userIdClaim.Value);
 
-        var books = new List<Book>();
-        foreach (var id in request.BookIds)
-        {
-            var book = await repo.FindById<Book>(id);
-            if (book != null) books.Add(book);
-        }
-
+       // find books in one go
+        var books = await repo.FindAll<Book>(b => request.BookIds.Contains(b.id));
+        if (books.Count != request.BookIds.Count) 
+            return Result.Failure<CreateOrderResponse>("One or more books were not found.");
         if (!books.Any()) return Result.Failure<CreateOrderResponse>("No valid books found.");
 
         //  Process Coupon (if provided)
@@ -47,6 +44,11 @@ public class CreateOrderHandler(
             
             if (appliedCoupon.IsExpired)
                 return Result.Failure<CreateOrderResponse>("Coupon is expired.");
+            
+            var alreadyUsed = await repo.AnyAsync<couponUser>(cu => cu.couponId == appliedCoupon.couponId && cu.userId == buyerId);
+            
+            if (alreadyUsed)
+                return Result.Failure<CreateOrderResponse>("You have already used this coupon.");
 
             discountMultiplier = 1m - (appliedCoupon.Discount_percentage / 100m);
             

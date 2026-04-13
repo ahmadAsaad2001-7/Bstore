@@ -19,6 +19,7 @@ public ICollection<Order> Orders { get; set; }
     public ICollection<couponUser> CouponUsers { get; set; }
 
     public ICollection<vote> VotesInitiated { get; set; }
+    public ICollection<UserBook> UserBooks { get; set; }
 
     public ICollection<voteParticipant> ParticipatingVotes { get; set; }
     
