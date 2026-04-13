@@ -15,7 +15,7 @@ public class GeoLocationService(HttpClient httpClient):IGeoLocationService
         long y = (long)Math.Floor((latitude + 90) * Math.Pow(2, precision));
 
         return Result.Success($"{precision}:{x}:{y}");
-    }
+    } 
 
     public Result<IEnumerable<string>> GetNeighborCellIds(string cellId)
     {

@@ -50,7 +50,7 @@ public class VendorController : ControllerBase
 
             var command = new AddVendorLocationCommand { VendorIpAddress = ipAddress };
             var result = await mediator.Send(command);
-
+ 
             return result.IsSuccess 
                 ? Ok(result.Value) 
                 : BadRequest(result.Error);

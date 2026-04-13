@@ -36,7 +36,9 @@ public class AddVendorLocationHandler : IRequestHandler<AddVendorLocationCommand
         if (cellResult.IsFailure) return Result.Failure<AddVendorLocationResponse>(cellResult.Error);
         
         vendor.cellId = cellResult.Value;
-    
+     
+         
+        
         _repo.Update(vendor); 
         await _repo.SaveChangesAsync(cancellationToken);
         var response = new AddVendorLocationResponse

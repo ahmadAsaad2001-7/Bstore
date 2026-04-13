@@ -8,7 +8,7 @@ public class AddVendorLocationValidator : AbstractValidator<AddVendorLocationCom
     {
         RuleFor(x => x.VendorIpAddress)
             .NotEmpty().WithMessage("IP Address is required.")
-            .Must(BeAValidIp).WithMessage("Invalid IP Address format.");
+            .Must(BeAValidIp).WithMessage("Invalid IP Address format."); 
     }
 
     private bool BeAValidIp(string ip)
