@@ -27,14 +27,16 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
                 .IsRequired()
                 .IsConcurrencyToken();
 
+       var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+       
        var converter = new ValueConverter<List<Genres>, string>(
-           v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
-           v => JsonSerializer.Deserialize<List<Genres>>(v, (JsonSerializerOptions)null) ?? new List<Genres>());
+           v => JsonSerializer.Serialize(v, jsonOptions),
+           v => JsonSerializer.Deserialize<List<Genres>>(v, jsonOptions) ?? new List<Genres>());
 
        var comparer = new ValueComparer<List<Genres>>(
-           (c1, c2) => c1.SequenceEqual(c2),
-           c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-           c => c.ToList());
+           (c1, c2) => c1 == null && c2 == null || c1 != null && c2 != null && c1.SequenceEqual(c2),
+           c => c == null ? 0 : c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+           c => c == null ? null : c.ToList());
 
        builder.Property(b => b.genres)
            .HasConversion(converter)

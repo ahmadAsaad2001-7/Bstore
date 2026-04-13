@@ -25,7 +25,7 @@ public class GetBooksHandler(IRepository repository)
             ImageUrl = book.imageUrl,
             Rating = book.rating,
            
-            Genres = book.genres.Select(g => g.ToString()).ToList() 
+            Genres = book.genres?.Select(g => g.ToString()).ToList() ?? new List<string>() 
         }).ToList();
 
         

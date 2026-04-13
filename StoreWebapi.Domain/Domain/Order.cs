@@ -8,7 +8,7 @@ public class Order
     public decimal TotalAmount { get; set; }
     public string Status { get; set; } //
     public string StripeSessionId { get; set; } 
-    public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+    public DateTime OrderDate { get; set; }
     public string Destination { get; set; }
     
   

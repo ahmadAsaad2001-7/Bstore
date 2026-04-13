@@ -50,9 +50,7 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
                 isbn = "978-0137081073",
                 imageUrl = "https://example.com/cleancoder.jpg",
                 rating = 4.8,
-                Version = 1,
-                genres = new List<Genres> { Genres.HardSciFi, Genres.Essay } 
-                
+                Version = 1
             },
             new Book
             {
@@ -64,15 +62,31 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
                 isbn = "978-0547928210",
                 imageUrl = "https://example.com/lotr.jpg",
                 rating = 4.9,
-                Version = 1 
-                ,
-                genres = new List<Genres> { Genres.Fantasy, Genres.Cookbook }
+                Version = 1
             }
         ); 
         modelBuilder.Entity<IdentityRole<Guid>>().HasData(
-            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "USER", NormalizedName = "USER" },
-            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "ADMINISTRATOR", NormalizedName = "ADMINISTRATOR" },
-            new IdentityRole<Guid> { Id = Guid.NewGuid(), Name = "VENDOR", NormalizedName = "VENDOR" }
-        );
+            new IdentityRole<Guid> 
+            { 
+                Id = Guid.Parse("11111111-1111-1111-1111-111111111111"), 
+                Name = "USER", 
+                NormalizedName = "USER",
+                ConcurrencyStamp = "11111111-1111-1111-1111-111111111111"
+            },
+            new IdentityRole<Guid> 
+            { 
+                Id = Guid.Parse("22222222-2222-2222-2222-222222222222"), 
+                Name = "ADMINISTRATOR", 
+                NormalizedName = "ADMINISTRATOR",
+                ConcurrencyStamp = "22222222-2222-2222-2222-222222222222"
+            },
+            new IdentityRole<Guid> 
+            { 
+                Id = Guid.Parse("33333333-3333-3333-3333-333333333333"), 
+                Name = "VENDOR", 
+                NormalizedName = "VENDOR",
+                ConcurrencyStamp = "33333333-3333-3333-3333-333333333333"
+            }
+        );  
     }
 }

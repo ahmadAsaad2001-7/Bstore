@@ -30,7 +30,7 @@ public class GetBookByIdHandler(IRepository repository)
                 Price = book.price,
                 Isbn = book.isbn,
                 ImageUrl = book.imageUrl,
-                Genres = book.genres.Select(genre => genre.ToString()).ToList(),
+                Genres = book.genres?.Select(genre => genre.ToString()).ToList() ?? new List<string>(),
                 Rating = book.rating,
             };
 

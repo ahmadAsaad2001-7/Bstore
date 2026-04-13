@@ -52,22 +52,22 @@ namespace StoreWebapi.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("471208fa-a7f2-4d31-9ec9-30fa2f4b8631"),
-                            ConcurrencyStamp = "9f6dc0d8-d738-4ca2-8f78-1f8cadb313d8",
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            ConcurrencyStamp = "11111111-1111-1111-1111-111111111111",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("4f3e66f2-780c-46dc-b5a1-c628271a9bbe"),
-                            ConcurrencyStamp = "867a4a74-e262-46eb-9d25-732eff7fe3bc",
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            ConcurrencyStamp = "22222222-2222-2222-2222-222222222222",
                             Name = "ADMINISTRATOR",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = new Guid("1f5788d5-62d1-4698-b0dc-8381addac372"),
-                            ConcurrencyStamp = "cf6a8db0-ac3a-472e-ad89-3c1213dd42ea",
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            ConcurrencyStamp = "33333333-3333-3333-3333-333333333333",
                             Name = "VENDOR",
                             NormalizedName = "VENDOR"
                         });
@@ -201,7 +201,6 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("genres")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imageUrl")
@@ -238,7 +237,6 @@ namespace StoreWebapi.Infrastructure.Migrations
                             Version = 1,
                             author = "Robert C. Martin",
                             description = "A Code of Conduct for Professional Programmers.",
-                            genres = "[19,44]",
                             imageUrl = "https://example.com/cleancoder.jpg",
                             isbn = "978-0137081073",
                             name = "The Clean Coder",
@@ -252,7 +250,6 @@ namespace StoreWebapi.Infrastructure.Migrations
                             Version = 1,
                             author = "J.R.R. Tolkien",
                             description = "The first volume of J.R.R. Tolkien's epic adventure.",
-                            genres = "[23,43]",
                             imageUrl = "https://example.com/lotr.jpg",
                             isbn = "978-0547928210",
                             name = "The Fellowship of the Ring",
@@ -364,9 +361,6 @@ namespace StoreWebapi.Infrastructure.Migrations
                     b.Property<DateTime>("expiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("isExpired")
-                        .HasColumnType("bit");
-
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
@@ -407,6 +401,7 @@ namespace StoreWebapi.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("PaidAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")

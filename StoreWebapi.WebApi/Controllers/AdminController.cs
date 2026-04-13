@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreWebapi.Application.Features.Admin.CastVote;
+using StoreWebapi.Application.Features.Admin.GenerateCoupons;
 
 namespace StoreWebapi.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Adminstrator")]
+[Authorize(Roles = "ADMINISTRATOR")]
 public class AdminController :ControllerBase
 {
     private readonly ISender  _mediator;
@@ -33,5 +34,15 @@ public class AdminController :ControllerBase
         if (result.IsFailure) return BadRequest(result.Error);
 
         return Ok(result.Value);
+    }
+
+        [HttpPost("coupons")]
+    public async Task<IActionResult> GenerateCoupon( [FromBody] GenerateCouponCommand request)
+    {
+        var result =await _mediator.Send(request);
+        if (result.IsFailure) return BadRequest(result.Error);
+        return Ok(result.Value);
+        
+        
     }
 }

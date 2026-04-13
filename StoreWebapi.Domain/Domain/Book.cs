@@ -12,7 +12,7 @@ public class Book
     public string imageUrl  { get; set; }
     public Guid? UserId { get; set; }
     public user user { get; set; }
-    public List<Genres>  genres { get; set; }
+    public List<Genres>? genres { get; set; }
     public int Version { get; set; }
     public double rating { get; set; }
     public DateTime CreatedAt { get; set; }

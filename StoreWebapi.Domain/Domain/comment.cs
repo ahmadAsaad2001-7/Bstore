@@ -2,7 +2,7 @@
 
 public class comment
 {
-    public Guid id { get; set; } = Guid.NewGuid();
+    public Guid id { get; set; }
     public string? text { get; set; }
     public DateTime? date { get; set; }
     public user ? user { get; set; }

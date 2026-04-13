@@ -6,5 +6,5 @@ public class voteParticipant
     public Guid userId { get; set; }
     public user? user { get; set; }
     public bool Approval { get; set; } 
-    public DateTime VotedAt { get; set; } = DateTime.UtcNow;
+    public DateTime VotedAt { get; set; }
 }

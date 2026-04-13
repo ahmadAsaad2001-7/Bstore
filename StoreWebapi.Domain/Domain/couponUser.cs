@@ -5,7 +5,7 @@ public class couponUser
     public coupons coupon { get; set; }
     public user user { get; set; }
     public Guid userId { get; set; }
-    public DateTime UsedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UsedAt { get; set; }
     
     
 }

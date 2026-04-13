@@ -55,6 +55,10 @@
     app.UseAuthentication(); 
     app.UseAuthorization();
 
-    app.MapControllers(); 
+    app.MapControllers();
+    using (var scope = app.Services.CreateScope())
+    {
+        await IdentitySeeder.SeedAdminAsync(scope.ServiceProvider);
+    }
 
     app.Run();

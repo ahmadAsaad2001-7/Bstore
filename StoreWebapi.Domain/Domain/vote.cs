@@ -1,7 +1,7 @@
 ﻿    namespace StoreWebapi.Domain.Domain;
     public class vote
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         public Guid InitiatorId { get; set; }
         public int Approval { get; set; }
         public int disApprove { get; set; }

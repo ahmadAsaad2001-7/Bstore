@@ -30,11 +30,12 @@ public class BooksController : ControllerBase
         return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
 
     }
-
+    [Authorize(Roles ="ADMINISTRATOR") ]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetBook([FromRoute] Guid id)
     {
-
+        var rolees = User.FindAll(System.Security.Claims.ClaimTypes.Role).Select(c => c.Value);
+        Console.WriteLine($"Current User Roles: {string.Join(", ", rolees)}");
         Console.WriteLine($"Received id: {id}");
         Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
 
@@ -66,11 +67,12 @@ public class BooksController : ControllerBase
             return Ok(result.Value);
         }
         catch (Exception ex)
-        {
+        {var roles = User.FindAll(System.Security.Claims.ClaimTypes.Role).Select(c => c.Value);
+            Console.WriteLine($"Current User Roles: {string.Join(", ", roles)}");
             return StatusCode(500, $"Internal error: {ex.Message}");
         }
     }
-    [Authorize(Roles =" Administrator") ]
+    [Authorize(Roles ="Administrator") ]
     [HttpPost]
     public async Task<IActionResult> AddBook([FromBody] CreateCommand command)
     {
