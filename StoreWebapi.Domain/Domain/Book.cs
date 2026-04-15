@@ -16,9 +16,7 @@ public class Book
     public int Version { get; set; }
     public double rating { get; set; }
     public DateTime CreatedAt { get; set; }
-    public ICollection<UserBook> UserBooks { get; set; }
     public ICollection<comment>  Comments { get; set; }
     public ICollection<transaction>  Transactions { get; set; }
-    
-    
+    public IEnumerable<UserBook>? UserBooks { get; set; }
 }

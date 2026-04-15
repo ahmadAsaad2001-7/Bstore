@@ -23,7 +23,6 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
     public DbSet<vote> Votes { get; set; }
     public DbSet<voteParticipant> VoteParticipants { get; set; }
     public DbSet<Order> Orders { get; set; }
-    public DbSet<UserBook>  UserBooks { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,7 +37,6 @@ public class AppDbContext: IdentityDbContext<user,IdentityRole<Guid>, Guid>
         modelBuilder.ApplyConfiguration(new CouponsConfiguration());
         modelBuilder.ApplyConfiguration(new CouponUserConfiguration());
         modelBuilder.ApplyConfiguration(new GridCellConfiguration());
-        modelBuilder.ApplyConfiguration(new UserBookConfig());
         
         // Seed Data
         modelBuilder.Entity<Book>().HasData(

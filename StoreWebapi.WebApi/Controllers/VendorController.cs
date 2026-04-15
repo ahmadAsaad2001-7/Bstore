@@ -30,7 +30,7 @@ public class VendorController : ControllerBase
         return Ok(result.Value);
         
     }
-    [Authorize(Roles = "Vendor")] // Ensure only vendors can update their location
+    [Authorize(Roles = "Vendor")] 
     [ApiController]
     [Route("api/[controller]")]
     public class VendorsController(ISender mediator) : ControllerBase

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using StoreWebapi.Application.Features.User;
 using StoreWebapi.Application.Features.User.ApplyforVendorRole;
+using StoreWebapi.Application.Features.User.GetMyLibrary;
+using StoreWebapi.Application.Features.User.GetNearByVendors;
 
 namespace StoreWebapi.Api.Controllers;
 [ApiController]
@@ -51,6 +53,29 @@ public class UserController : ControllerBase
         return result.IsSuccess 
             ? Ok(new { VoteId = result.Value, Message = "Application submitted to admins." }) 
             : BadRequest(result.Error);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetNearbyVendors()
+    {
+
+        var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+        if (string.IsNullOrEmpty(ipAddress) || ipAddress == "::1")
+        {
+            ipAddress = "8.8.8.8"; 
+        }
+        var query= new GetNearByVendorsQuery(ipAddress);
+        var result = await _mediator.Send(query);
+        return Ok(result);
+
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetMyLibrary()
+    {
+        var query = new GetMyLibraryQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
     
 }
